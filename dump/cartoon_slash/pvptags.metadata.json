@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"cartoon_slash.pvptags"},{"v":2,"unique":true,"key":{"userid":1},"name":"userid_1","ns":"cartoon_slash.pvptags","background":true}],"uuid":"adca532008404ba4bf13714347055277"}

@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"cartoon_slash.powerranks"},{"v":2,"unique":true,"key":{"userid":1},"name":"userid_1","ns":"cartoon_slash.powerranks","background":true}],"uuid":"1fe1464f410d4218ae52c6c89e1481af"}

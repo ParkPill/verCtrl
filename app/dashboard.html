@@ -1,0 +1,225 @@
+﻿<!doctype html>
+<html lang="en" ng-app="phonecatApp">
+<head>
+    <meta charset="utf-8">
+    <title>C_Slash Server for Cartoon Slash : Online</title>
+    <!--    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css" />-->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="dashboard.js"></script>
+
+    <style>
+        .button {
+            background-color: darkgray;
+            color: black;
+        }
+
+        .input {
+            background-color: black;
+            color: gray;
+        }
+    </style>
+</head>
+  <body ng-controller="PhoneListController" style="background-color:black;color:gray">
+        <div id="login">
+          ID <input type="text" id="loginID" class="input"> PASSWORD <input type="password" id="loginPassword" class="input"> 
+          <button type="button" ng-click="onLogin()" class="button">Log in</button>
+        </div>
+        <div id="main">
+            <span>ID: {{login_id}}  </span><button type="button" ng-click="onLogout()" class="button">Log out</button><br>
+            <span>Player ID: {{player_id}}</span><input type="text" id="playerID" class="input">
+            <button type="button" ng-click="onSearchByID()" class="button">Search</button><br>
+            <span>Player Name: {{player_name}}</span><input type="text" id="playerName" class="input">
+            <button type="button" ng-click="onSearchByName()" class="button">Search</button><br>
+            <span>Play ID: {{play_id}}</span><input type="text" id="playID" class="input">
+            <button type="button" ng-click="onSearchByPlayID()" class="button">Search</button><br>
+            <span>GUILD Name: {{play_id}}</span><input type="text" id="guildName" class="input">
+            <button type="button" ng-click="onSearchByGuildName()" class="button">Search</button><br>
+            <br>
+            <span>Set Single Data</span><br>
+            <span>ID</span><input type="text" id="playerIDForSingleDataSet" class="input">
+            <span>Data</span><input type="text" id="dataForSingleDataSet" class="input">
+            <span>Value</span><input type="text" id="valueForSingleDataSet" class="input">
+            <button type="button" ng-click="onSingleDataSet()" class="button">Set</button>
+            <br>
+            <!--post 양식: hero-5-영웅의 귀환!-유닛 선물입니다 ^0^|gem-300-버그 제보-감사합니다 ^0^|item-potion1_5-물약-중급 HP 포션 5개   <br><br>-->
+            <span>Set Single Guild Data</span><br>
+            <span>Guild Name</span><input type="text" id="guildNameForSingleGuildDataSet" class="input">
+            <span>Data</span><input type="text" id="dataForSingleGuildDataSet" class="input">
+            <span>Value</span><input type="text" id="valueForSingleGuildDataSet" class="input">
+            <button type="button" ng-click="onSingleGuildDataSet()" class="button">Set</button>
+            <br><br>
+
+
+            <button type="button" ng-click="onGetGameInfo()" class="button">Get Game Info</button><br>
+            <span>Set Coupon</span><input type="text" id="coupon" class="input">
+            <button type="button" ng-click="onCouponClick()" class="button">Set</button><br>
+            <span>Game Version Code AOS</span><input type="text" id="aosVersionCode" class="input">
+            <span>iOS</span><input type="text" id="iosVersionCode" class="input">
+            <button type="button" ng-click="onSetVersionCodeClick()" class="button">Set</button><br>
+            <span>Server Maintenance </span><input type="text" id="serverMaintenance" class="input">
+            <button type="button" ng-click="onServerMaintenanceClick()" class="button">Set</button><br>
+            몬스터웨이브 <button type="button" ng-click="onMonsterWaveOn()" class="button">ON</button><button type="button" ng-click="onMonsterWaveOff()" class="button">OFF</button><br>
+            <span>Reward Code </span><input type="text" id="rewardCode" value="1_100" class="input">
+            <span>Msg </span><input type="text" id="rewardMsg" style="width:500px" value="ko_버그 보상|버그 보상입니다! 유저분들의 도움으로 빠르게 대처할 수 있었습니다! 다시 한 번 감사드립니다!/en_Bug reward|Thanks for the users who reported the bug." class="input">
+            <button type="button" ng-click="onRewardSetClick()" class="button">Set</button><br>
+            <!--Reward Code 양식: 1_300 Msg 양식:ko_버그 보상|버그 보상입니다! 유저분들의 도움으로 빠르게 대처할 수 있었습니다! 다시 한 번 감사드립니다!/en_Bug reward|Thanks for the users who reported the bug. <br>-->
+            <br>
+
+            <pre>User Data <br>{{ user_data | json : 5 }}</pre>
+            <br>
+
+            <!--<span>Post</span><br>
+            <span>ID</span><input type="text" id="playerIDForPost">
+            <span>Message</span><input type="text" id="messageForPost">
+            <button type="button" ng-click="onSendPost()">Send</button><br>
+            <br>
+            <span>Delete</span><br>
+            <span>ID</span><input type="text" id="playerIDForDelete">
+            <button type="button" ng-click="onDelete()">Delete</button><br>
+            <br>-->
+
+            <br>
+            <!--<button type="button" ng-click="onForceResultLegendGirl()">Force Result Legend Girl</button>-->
+            <span>Set PVP Data</span><br>
+            <button type="button" ng-click="testLegendGirlRank()" class="button">Legend Girl Test</button><br>
+            <button type="button" ng-click="testTeamPVPRank()" class="button">PVP Team Test</button><br>
+            <button type="button" ng-click="testTagPVPRank()" class="button">PVP Tag Test</button><br>
+            <button type="button" ng-click="test1on1PVPRank()" class="button">PVP 1on1 Test</button><br>
+
+            <span>PVPTeam Name</span><input type="text" id="pTeamNameForSingleDataSet" class="input">
+            <span>Trophy</span><input type="text" id="pTeamTrophy" class="input">
+            <button type="button" ng-click="onPVPTeamDataSet()" class="button">Set</button>
+            <br>
+            <span>PVP1On1 Name</span><input type="text" id="p1On1NameForSingleDataSet" class="input">
+            <span>Trophy</span><input type="text" id="p1on1Trophy" class="input">
+            <button type="button" ng-click="onPVP1On1DataSet()" class="button">Set</button>
+            <br>
+            <span>PVPTag Name</span><input type="text" id="pTagNameForSingleDataSet" class="input">
+            <span>Trophy</span><input type="text" id="pTagTrophy" class="input">
+            <button type="button" ng-click="onPVPTagDataSet()" class="button">Set</button>
+            <br>
+            <span>LegendGirl Name</span><input type="text" id="pvpLegendGirlNameForSingleDataSet" class="input">
+            <span>Trophy</span><input type="text" id="pvpLegendGirlTrophy" class="input">
+            <button type="button" ng-click="onPVPLegendGirlDataSet()" class="button">Set</button>
+            <br>
+            <span>PowerRank Name</span><input type="text" id="powerRankNameForSingleDataSet" class="input">
+            <!--<span>Score</span><input type="text" id="powerRankScore">-->
+            <button type="button" ng-click="onPowerRankDataDelete()" class="button">DELETE</button>
+            <br>
+            <!--<br>spearMan                    =0,
+            <br>goblin                          =1,
+            <br>skeleton                        =2,
+            <br>lizard                          =3,
+            <br>orc                             =4,
+            <br>werewolf                        =5,
+            <br>archer                          =6,
+            <br>monk                            =7,
+            <br>fighter                         =8,
+            <br>bear                            =9,
+            <br>healer                          =10,
+            <br>knight                          =11,
+            <br>elfSwordMan                     =12,
+            <br>assassin                        =13,
+            <br>lion                            =14,
+            <br>crazy_werewolf                  =15,
+            <br>crazy_bear                      =16,
+            <br>crazy_lion                      =17,
+            <br>werewolfFemale                  =18,
+            <br>femaleLion                      =19,
+            <br>ladybear                        =20,
+            <br>wizard                          =21,
+            <br>tanker                          =22,
+            <br>penguin                         =23,
+            <br>rudolph                         =24,
+            <br>minobaby                        =25,
+            <br>kerberos                        =26,
+            <br>santadog                        =27,
+            <br>robotMouse                      =28,
+            <br>batmonster                      =29,
+            <br>santa                           =30,
+            <br>watermelon                      =31,
+            <br>parasite                        =32,
+            <br>green_meat                      =33,
+            <br>savageArcher                    =34,
+            <br>mole                            =35,
+            <br>necromancer                     =36,
+            <br>salamander                      =37,
+            <br>ent                             =38,
+            <br>undine                          =39,
+            <br>catinboots                      =40,
+            <br>mino                            =41,
+            <br>lamia                           =42,
+            <br>chunja                          =43,
+            <br>golem                           =44-->
+            <br>
+            <span>인앱 매출</span><br>
+            <table>
+                <tr>
+                    <td>DATE</td>
+                    <td>PLATFORM</td>
+                    <td>GROSS</td>
+                </tr>
+                <tr ng-repeat="info in grossInfo">
+                    <td>{{info.date}}</td>
+                    <td>{{info.platform}}</td>
+                    <td>{{info.gross}}</td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td>ID</td>
+                    <td>DATE</td>
+                    <td>PLATFORM</td>
+                    <td>PRODUCT</td>
+                    <td>CURRENCY</td>
+                    <td>PRICE</td>
+                    <td>DELETE</td>
+                </tr>
+                <tr ng-repeat="receipt in receiptsSuccess">
+                    <td>{{receipt.id}}</td>
+                    <td>{{receipt.date}}</td>
+                    <td>{{receipt.platform}}</td>
+                    <td>{{receipt.product}}</td>
+                    <td>{{receipt.currency}}</td>
+                    <td>{{receipt.price}}</td>
+                    <td><button type="button" ng-click="onDeleteReceipt(receipt._id)" class="button">DELETE</button></td>
+                </tr>
+            </table>
+            <span>인증 실패 </span><span>({{receiptsFailedCount}})</span>
+            <table>
+                <tr>
+                    <td>ID</td>
+                    <td>DATE</td>
+                    <td>PRODUCT</td>
+                    <td>CURRENCY</td>
+                    <td>PRICE</td>
+                </tr>
+                <tr ng-repeat="receipt in receiptsFailed">
+                    <td>{{receipt.id}}</td>
+                    <td>{{receipt.date}}</td>
+                    <td>{{receipt.product}}</td>
+                    <td>{{receipt.currency}}</td>
+                    <td>{{receipt.price}}</td>
+                    <td><button type="button" ng-click="onDeleteReceipt(receipt._id)" class="button">DELETE</button></td>
+                </tr>
+            </table>
+
+
+            <span>누적: </span><span>{{accumulatedGross}}</span>
+            <span>오늘: </span><span>{{accumulatedGrossToday}}</span>
+            <span>어제: </span><span>{{accumulatedGrossYesterday}}</span>
+            <span>지난 30일: </span><span>{{accumulatedGrossThisMonth}}</span><br>
+            <button type="button" ng-click="getReceipt()" class="button">Get receipts</button><br>
+
+            <!--<button type="button" ng-click="onHandleOddGold()">handle odd gold</button>
+    <button type="button" ng-click="onHandleOddGem()">handle odd gem</button>
+    <button type="button" ng-click="onHandleOddGene()">handle odd gene</button>
+    <button type="button" ng-click="onHandleOddSoul()">handle odd soul</button>-->
+            <!--<button type="button" ng-click="onHandleGoldMinus()">handle minus gold</button>
+    <button type="button" ng-click="onHandleTreeMinus()">handle minus tree</button>
+    <button type="button" ng-click="onHandleOddTrophy()">handle odd trophy</button>-->
+
+        </div>
+    </body>
+</html>

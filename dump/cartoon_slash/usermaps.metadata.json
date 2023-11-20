@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"cartoon_slash.usermaps"},{"v":2,"unique":true,"key":{"mapname":1},"name":"mapname_1","ns":"cartoon_slash.usermaps","background":true}],"uuid":"30aa47f9129b4f52a84fb7c21488a14d"}
