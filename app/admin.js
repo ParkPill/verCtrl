@@ -113,11 +113,14 @@ phonecatApp.controller('PhoneListController', function PhoneListController($scop
         });
     }
     $scope.onGetVer = function () {
+        var text = "";
+        text += document.getElementById("inputGameNameForSearch").value ;
+        console.log("get ver: " + text);
         $http({
             method: 'POST',
             url: '/getVer',
-            headers: { 'Content-Type': 'application/json' },
-            data: document.getElementById("inputGameNameForSearch").value 
+            headers: { 'Content-Type': 'text/plain' },
+            data: text
         }).then(function (response) {
             // console.log("response: " + response.data);
             $scope.user_data = response.data;

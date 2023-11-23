@@ -154,13 +154,13 @@ module.exports = function (app, Gameinfo)
                 // console.log("error same name exist: ");
                 res.json(userWithName);
             } else {
-                res.json({ error: "same name exist" });
+                res.json({ error: "not found" });
             }
         });
     });
 
     app.post('/getVer', function (req, res) {  // create user;
-        // console.log("createuser data:" + JSON.stringify(req.body));
+        // console.log("getVer data:" + JSON.stringify(req.body));
 
         Gameinfo.findOne({ name: req.body }, function (err, userWithName) {
             if (err) return res.status(500).json({ error: 'database failure' });
@@ -169,9 +169,9 @@ module.exports = function (app, Gameinfo)
                 var info = "";
                 info += userWithName.ver + ",";
                 info += userWithName.maint;
-                res.json(info);
+                res.send(info);
             } else {
-                res.json({ error: "same name exist" });
+                res.send("same name exist");
             }
         });
     });
@@ -194,7 +194,7 @@ module.exports = function (app, Gameinfo)
                     }
                 });
             } else {
-                res.json({ error: "same name exist" });
+                res.json({ error: "not found" });
             }
         });
     });
@@ -216,7 +216,7 @@ module.exports = function (app, Gameinfo)
                     }
                 });
             } else {
-                res.json({ error: "same name exist" });
+                res.json({ error: "not found" });
             }
         });
     });
@@ -237,7 +237,7 @@ module.exports = function (app, Gameinfo)
                     }
                 });
             } else {
-                res.json({ error: "same name exist" });
+                res.json({ error: "not found" });
             }
         });
     });

@@ -49,6 +49,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/verCtrl', { useNewUrlParser: true })
 // [CONFIGURE APP TO USE bodyParser]
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(bodyParser.text());
 
 var Gameinfo = require('./models/gameinfo');
 
