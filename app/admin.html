@@ -2,11 +2,11 @@
 <html lang="en" ng-app="phonecatApp">
 <head>
     <meta charset="utf-8">
-    <title>C_Slash Server for Cartoon Slash : Online</title>
+    <title>Version Controller for 1506 games</title>
     <!--    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css" />-->
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="dashboard.js"></script>
+    <script src="admin.js"></script>
 
     <style>
         .button {
@@ -29,16 +29,30 @@
             
             <!--post 양식: hero-5-영웅의 귀환!-유닛 선물입니다 ^0^|gem-300-버그 제보-감사합니다 ^0^|item-potion1_5-물약-중급 HP 포션 5개   <br><br>-->
 
-            <button type="button" ng-click="onGetGameInfo()" class="button">Get Game Info</button><br>
-            <span>Game Version Code</span><input type="text" id="aosVersionCode" class="input">
+            creategame
+            <span>Create Game </span><br>
+            <input type="text" id="inputGameName" class="input">
+            <button type="button" ng-click="onCreateGame()" id="btnCreate" class="button">Create</button><br>
+
+            <span>Get Game Info</span><br>
+            <input type="text" id="inputGameNameForSearch" class="input">
+            <button type="button" ng-click="onGetGameInfo()" class="button">Search</button><br>
+            <span>Change Password</span><br>
+            <input type="password" id="inputPassword" class="input" >
+            <button type="button" ng-click="changePassword()" class="button">Set</button><br>
+            <span>Game Version Code</span><br>
+            <input type="text" id="versionCode" class="input">
             <button type="button" ng-click="onSetVersionCodeClick()" class="button">Set</button><br>
-            <span>Server Maintenance </span><input type="text" id="serverMaintenance" class="input">
-            <button type="button" ng-click="onServerMaintenanceClick()" id="btnMaint" class="button">Set</button><br>
+            <span>Server Maintenance </span><br>
+            <button type="button" ng-click="onMaintClick()" id="btnMaint" class="button">Set</button><br>
+            <br>
+            <span>Get version test </span><br>
+            <button type="button" ng-click="onGetVer()" class="button">Get</button><br>
             
             <!--Reward Code 양식: 1_300 Msg 양식:ko_버그 보상|버그 보상입니다! 유저분들의 도움으로 빠르게 대처할 수 있었습니다! 다시 한 번 감사드립니다!/en_Bug reward|Thanks for the users who reported the bug. <br>-->
             <br>
 
-            <pre>User Data <br>{{ user_data | json : 5 }}</pre>
+            <pre>Game Data <br>{{ user_data | json : 5 }}</pre>
             <br>
         </div>
     </body>

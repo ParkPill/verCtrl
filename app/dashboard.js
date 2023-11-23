@@ -115,16 +115,9 @@ phonecatApp.controller('PhoneListController', function PhoneListController($scop
                 document.getElementById("login").style.display = "none";
                 $scope.login_id = document.getElementById("loginID").value;
                 
-                $http({
-                    method: 'GET',
-                    url: '/getgameinfo',
-                    headers : { 'Content-Type' : 'application/json' }
-                }).then(function (response){
-                    console.log("response: " + response.data);
-                    $scope.user_data = response.data;
-                },function (error){
-                    console.log("error: " + JSON.stringify(error) );
-                });
+                
+                var info = response.data.info;
+                document.getElementById("btnMaint").style.background = info.Dungeon0On>0?"green":"red";
                 
 //                $http({
 //                    method: 'POST',
