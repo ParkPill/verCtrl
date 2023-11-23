@@ -117,7 +117,7 @@ phonecatApp.controller('PhoneListController', function PhoneListController($scop
             method: 'POST',
             url: '/getVer',
             headers: { 'Content-Type': 'application/json' },
-            data: { 'name': document.getElementById("inputGameNameForSearch").value  }
+            data: document.getElementById("inputGameNameForSearch").value 
         }).then(function (response) {
             // console.log("response: " + response.data);
             $scope.user_data = response.data;

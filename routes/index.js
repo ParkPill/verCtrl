@@ -162,13 +162,13 @@ module.exports = function (app, Gameinfo)
     app.post('/getVer', function (req, res) {  // create user;
         // console.log("createuser data:" + JSON.stringify(req.body));
 
-        Gameinfo.findOne({ name: req.body.name }, function (err, userWithName) {
+        Gameinfo.findOne({ name: req.body }, function (err, userWithName) {
             if (err) return res.status(500).json({ error: 'database failure' });
             if (userWithName) { // user with the name exist
                 // console.log("error same name exist: ");
-                var info = {};
-                info.ver = userWithName.ver;
-                info.maint = userWithName.maint;
+                var info = "";
+                info += userWithName.ver + ",";
+                info += userWithName.maint;
                 res.json(info);
             } else {
                 res.json({ error: "same name exist" });
